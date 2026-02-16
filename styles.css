@@ -420,14 +420,15 @@ body {
 .glossary-description {
     color: var(--text-dark);
     line-height: 1.7;
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 .glossary-item.active .glossary-description {
-    max-height: 500px;
+    max-height: 1000px;
+    padding: 0 1.5rem 1.5rem 1.5rem;
 }
 
 .quiz-options {
