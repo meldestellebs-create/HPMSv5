@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bildungswege Stuttgart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <span class="logo-main">Meldestelle</span>
+            <span class="logo-sub">Berufliche Schulen Stuttgart</span>
+        </div>
+    </header>
+
+    <main class="hero">
+        <div class="container">
+            <h1 class="hero-title">Deine Zukunft.<br><span class="highlight">Dein Weg.</span></h1>
+
+            <div class="cards-container">
+
+                <section id="wizard-section" class="option-card">
+                    <div class="card-header">
+                        <div class="icon-wrapper">🚀</div>
+                        <h2>Bildungs- und Qualifizierungswege</h2>
+                    </div>
+                    <div class="card-content">
+
+                        <div class="split-container">
+                            <div class="split-section">
+                                <div class="section-title"><span class="section-number">1</span> Start</div>
+                                <div class="select-wrapper">
+                                    <label class="select-label">Aktueller Abschluss</label>
+                                    <select id="start">
+                                        <option value="">-- Bitte wählen --</option>
+                                        <option value="ohneAbschluss">Ohne Abschluss (allgemeinbildende Schule)</option>
+                                        <option value="sbbz">Sonderpädagogische Bildungs- und Beratungszentren (SBBZ)</option>
+                                        <option value="vabo">VABO Vorqualifizierungsjahr</option>
+                                        <option value="avdual">AVdual</option>
+                                        <option value="hauptschulabschluss">Hauptschulabschluss</option>
+                                        <option value="mittlereReife">Mittlere Reife/Mittlerer Bildungsabschluss</option>
+                                        <option value="fachhochschulreife">Fachhochschulreife</option>
+                                        <option value="abitur">Abitur/Allgemeine Hochschulreife</option>
+                                        <option value="meister">Meister/Techniker/Fachwirt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="split-section">
+                                <div class="section-title"><span class="section-number">2</span> Ziel</div>
+                                <div class="select-wrapper">
+                                    <label class="select-label">Gewünschter Abschluss</label>
+                                    <select id="ziel">
+                                        <option value="">-- Bitte wählen --</option>
+                                        <option value="bve">Berufsvorbereitende Einrichtung (BVE)</option>
+                                        <option value="vabKF">Förderschule VAB-KF/VAB Abschluss</option>
+                                        <option value="sonderberufsschule">Sonderberufsschule</option>
+                                        <option value="hauptschulabschluss">Hauptschulabschluss</option>
+                                        <option value="berufsabschluss">Berufsabschluss</option>
+                                        <option value="mittlereReife">Mittlere Reife/Mittlerer Bildungsabschluss</option>
+                                        <option value="fachhochschulreife">Fachhochschulreife</option>
+                                        <option value="abitur">Abitur/Allgemeine Hochschulreife</option>
+                                        <option value="meister">Meister/Techniker/Fachwirt</option>
+                                        <option value="bachelor">Bachelor/Master/Promotion</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="visualization-area">
+                            <div class="endpoint-circle" id="vis-start">?</div>
+                            <div class="connection-line"><div class="connection-arrow"></div></div>
+                            <div class="endpoint-circle" id="vis-target">?</div>
+                        </div>
+
+                        <button class="btn-primary" onclick="showPaths()">🔍 Wege anzeigen</button>
+                        <button class="btn-secondary" onclick="resetPaths()">🔄 Zurücksetzen</button>
+
+                        <div id="result" class="results-container"></div>
+                    </div>
+                </section>
+
+                <section id="download-section" class="option-card">
+                    <div class="card-header"><div class="icon-wrapper">📄</div><h2>Formulare & Infos</h2></div>
+                    <div class="card-content">
+                         <div class="download-group">
+                            <h3>VABO</h3>
+                            <a href="VABO Vermittlungsanfrage.pdf" target="_blank" class="download-item">📝 Vermittlungsanfrage VABO</a>
+                            <a href="VABO Hinweisblatt für SuS.pdf" target="_blank" class="download-item">ℹ️ Hinweisblatt VABO</a>
+                        </div>
+                        <div class="download-group" style="margin-top:1rem">
+                            <h3>AVdual</h3>
+                            <a href="AVdual Vermittlungsanfrage.pdf" target="_blank" class="download-item">📝 Vermittlungsanfrage AVdual</a>
+                            <a href="AVdual Hinweisblatt für SuS.pdf" target="_blank" class="download-item">ℹ️ Hinweisblatt AVdual</a>
+                             <a href="AVdual Informationsblatt.pdf" target="_blank" class="download-item">📄 Informationsblatt AVdual</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="glossar-section" class="option-card">
+                    <div class="card-header"><div class="icon-wrapper">💡</div><h2>Begriffe erklärt</h2></div>
+                    <div class="card-content">
+                        <input type="text" id="glossar-search" onkeyup="filterGlossar()" placeholder="Suche..." style="width:100%; padding:10px; margin-bottom:1rem; border:1px solid #ddd; border-radius:4px;">
+                        <div id="glossar-container"></div>
+                    </div>
+                </section>
+
+                <section id="quiz-section" class="option-card">
+                    <div class="card-header"><div class="icon-wrapper">🎯</div><h2>Berufswahl-Quiz</h2></div>
+                    <div class="card-content">
+                        <div id="quiz-app">
+                            <div id="quiz-start"><button class="btn-primary" onclick="QuizApp.start()">Quiz starten</button></div>
+                            <div id="quiz-question-container" style="display:none">
+                                <div style="background:#eee; height:8px; border-radius:4px; margin-bottom:1rem"><div id="quiz-progress-fill" style="background:var(--text-dark); height:100%; width:0%"></div></div>
+                                <h3 id="quiz-question-text">Frage</h3>
+                                <div id="quiz-options-container" class="quiz-options"></div>
+                            </div>
+                            <div id="quiz-results" style="display:none">
+                                <div id="quiz-result-list"></div>
+                                <button class="btn-secondary" onclick="QuizApp.reset()">Neu starten</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <h2 class="info-section-title">Weitere Informationen</h2>
+                <div class="small-cards-grid">
+                    <div class="card-small">
+                        <div class="card-header-small"><span class="icon-small">🏫</span><h3>Berufliche Schulen</h3></div>
+                        <a href="Zugangsvoraussetzungen Beruflichen Schulen.pdf" target="_blank" class="download-link-small">Zugangsvoraussetzungen (PDF)</a>
+                    </div>
+                    <div class="card-small">
+                        <div class="card-header-small"><span class="icon-small">🛠️</span><h3>Ausbildung</h3></div>
+                        <p class="placeholder-text">Unterlagen folgen</p>
+                    </div>
+                    <div class="card-small">
+                        <div class="card-header-small"><span class="icon-small">📢</span><h3>Flyer</h3></div>
+                        <a href="Flyer Elternstiftung BW.pdf" target="_blank" class="download-link-small">Flyer Elternstiftung BW (PDF)</a>
+                    </div>
+                    <div class="card-small">
+                        <div class="card-header-small"><span class="icon-small">ℹ️</span><h3>Informationsmaterial</h3></div>
+                        <a href="Bildungs- und Qualifizierungswege in Stuttgart.pdf" target="_blank" class="download-link-small">Bildungswege (PDF)</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
